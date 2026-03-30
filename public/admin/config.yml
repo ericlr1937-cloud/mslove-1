@@ -1,0 +1,69 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/products"
+public_folder: "/images/products"
+
+locale: zh_Hans
+
+collections:
+  - name: "products"
+    label: "产品管理"
+    label_singular: "产品"
+    folder: "_data/products"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}} — {{category}}"
+    fields:
+      - label: "产品名称"
+        name: "name"
+        widget: "string"
+        hint: "例如：深层修复洁肤凝胶"
+
+      - label: "副标题"
+        name: "subtitle"
+        widget: "string"
+        hint: "例如：每日护理"
+
+      - label: "产品分类"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "精华护理 (Essential Care)", value: "ESSENTIAL CARE" }
+          - { label: "日常护理 (Daily Ritual)", value: "DAILY RITUAL" }
+          - { label: "健康养护 (Wellness)", value: "WELLNESS" }
+          - { label: "礼盒套装 (Gift Set)", value: "GIFT SET" }
+        default: "ESSENTIAL CARE"
+
+      - label: "产品图片"
+        name: "image"
+        widget: "image"
+        hint: "建议尺寸：800×1000px，JPG 或 PNG 格式"
+
+      - label: "产品描述"
+        name: "description"
+        widget: "text"
+        hint: "1-2句话介绍产品功效"
+
+      - label: "功效标签（最多3个）"
+        name: "tags"
+        widget: "list"
+        max: 3
+        field:
+          label: "标签"
+          name: "tag"
+          widget: "string"
+        hint: "例如：pH平衡、舒缓、天然植物"
+
+      - label: "功效徽章"
+        name: "efficacy"
+        widget: "string"
+        hint: "显示在图片右上角，例如：深层修复"
+
+      - label: "是否上架显示"
+        name: "published"
+        widget: "boolean"
+        default: true

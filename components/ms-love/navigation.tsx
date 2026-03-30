@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
+import Link from "next/link"
 import { WaterRippleButton } from "./water-ripple-button"
 
 export function Navigation() {
@@ -21,24 +22,26 @@ export function Navigation() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? "bg-[#FFFAF5]/80 backdrop-blur-xl shadow-sm" 
+        scrolled
+          ? "bg-[#FFFAF5]/80 backdrop-blur-xl shadow-sm"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          className="font-[var(--font-playfair)] text-2xl md:text-3xl tracking-wider text-[#8B6B6B]"
-        >
-          MS LOVE
-        </motion.div>
-        
+        <Link href="/">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="font-[var(--font-playfair)] text-2xl md:text-3xl tracking-wider text-[#8B6B6B] cursor-pointer"
+          >
+            MS LOVE
+          </motion.div>
+        </Link>
+
         <div className="hidden md:flex items-center gap-8">
           {["Collection", "About", "Ritual", "Contact"].map((item, i) => (
             <motion.a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={`/#${item.toLowerCase()}`}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * i, duration: 0.5 }}
@@ -49,9 +52,11 @@ export function Navigation() {
           ))}
         </div>
 
-        <WaterRippleButton variant="primary" className="!px-6 !py-2 !text-xs !tracking-widest">
-          SHOP
-        </WaterRippleButton>
+        <Link href="/shop">
+          <WaterRippleButton variant="primary" className="!px-6 !py-2 !text-xs !tracking-widest">
+            SHOP
+          </WaterRippleButton>
+        </Link>
       </div>
     </motion.nav>
   )
