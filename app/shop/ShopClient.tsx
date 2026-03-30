@@ -90,12 +90,18 @@ export default function ShopClient({ products }: { products: Product[] }) {
                   whileHover={{ scale: 1.025 }}
                   transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                 >
+                 {product.image ? (
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
                   />
+                ) : (
+                  <div className="w-full h-full bg-[#F5E6E0] flex items-center justify-center">
+                    <span className="text-[#C4A4A4] text-sm tracking-widest">NO IMAGE</span>
+                  </div>
+                )}
                   <div className="absolute top-4 right-4 bg-white/85 backdrop-blur-md rounded-full px-4 py-1.5 shadow">
                     <span className="text-[10px] tracking-wider text-[#C4A4A4] font-medium uppercase">
                       {product.efficacy}
